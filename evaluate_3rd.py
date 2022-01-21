@@ -48,7 +48,6 @@ def find_correspondence_one_pair(feat1, feat2):
 def est_trans_one_pair(xyz, xyz_corr, feat, feat_corr, voxel_size, func='ransac'): # ransac/teaserpp
     # [n1, 3], [n1, 3], [n1, c], [n1, c]
     # record reg_time
-    # xyz1和xyz2的点数可能不一样，但是每个点一定要有feat
     # source -> target
     if func=='ransac':
         assert voxel_size > 0
@@ -313,7 +312,7 @@ def evaluate_one_scene(args, log_info, scene):
                 reg_time = 0
                 inlier_ratio, inlier_num, rotError, translateError = 0, 0, 0, 0
                 registration_gt, registration_true_positive, feature_matching_num, rot_translate_positive = 0, 0, 0, 0
-            # 写文件:inlier_ratio, reg_time, rotError, translateError
+            # writing file:inlier_ratio, reg_time, rotError, translateError
             # registration_true_positive, feature_matching_num, registration_pred_positive
             # est_trans
             
@@ -465,9 +464,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    '''
-    要把all_feat加上
-    把estimate source->target然后再inv改成直接target->source
-    把log trans改成广泛用的那种，不要写死
-    voxel_size改个名字
-    '''
